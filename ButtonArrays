@@ -5,19 +5,22 @@ using UnityEngine.UI;
 
 public class ButtonArray : MonoBehaviour
 {
-    string[] myStringArray = {"a1", "a2", "a3", "a4"};
-    int nbrButton = 4;
+    public GameObject myPrefabButton;
+    public GameObject[] myArrayObjButton;
+    public string[] nameEleButton = { "Play", "Return", "View" };
+
+    private GameObject Ai;
+
     void Start()
     {
-        for (int j = 0; j < nbrButton; j++) 
+        for (int i = 0; i < nameEleButton.Length; i++)
         {
-            GameObject.Find("button1").GetComponentInChildren<Text>().text = myStringArray[j];
+            System.Array.Resize<GameObject>(ref myArrayObjButton, myArrayObjButton.Length + 1);
+            Ai = Instantiate(myPrefabButton, new Vector3(300+ i*400, 400 , 0), Quaternion.identity);
+            Ai.transform.SetParent(GameObject.Find("Canvas").transform);
+            Ai.name = nameEleButton[i];
+            Ai.GetComponentInChildren<Text>().text = nameEleButton[i];
+            myArrayObjButton[i] = Ai;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
