@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PrefabScene : MonoBehaviour
+{
+    public GameObject myPrefab;
+    public GameObject[] myArrayObj;
+    public string[] nameEle = {"Tour Effeil", "Arc de triomphe", "Louvre"};
+    public string[] descEle = { "Made by Gustave Eiffeil", "Big place in Paris", "Big museum" };
+
+    private GameObject Ai;
+
+    void Start()
+    {
+        for (int i = 0; i < nameEle.Length; i++) 
+        {
+            System.Array.Resize<GameObject>(ref myArrayObj, myArrayObj.Length + 1);
+            Ai = Instantiate(myPrefab, new Vector3(0, (0+i)*200, 0), Quaternion.identity);
+            Ai.name = nameEle[i];
+            GameObject.Find(Ai.name).GetComponentInChildren<Text>().text = descEle[i];
+            myArrayObj[i] = Ai;
+
+        }
+    }
+}
