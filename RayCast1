@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class RayCast1 : MonoBehaviour
+{
+    
+    void Update()
+    {
+        RaycastHit hit;
+        Debug.DrawRay(transform.position, Vector3.forward * 100000, Color.red);
+        Ray ray = new Ray(transform.position, Vector3.forward);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            GameObject.Find("Canvas").GetComponentInChildren<Canvas>().GetComponentInChildren<Text>().text = "Name : " + hit.transform.name + " Description: "+ hit.transform.GetComponentInChildren<Text>().text;
+        }
+    }
+}
